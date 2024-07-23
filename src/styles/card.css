@@ -1,0 +1,20 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    border: 2px solid #213547;
+    border-radius: 20px;
+    height: 300px;
+    width: 300px;
+}
+
+.card:hover {
+    cursor: pointer;
+    background-color: antiquewhite;
+}
+
+img {
+    max-height: 70%;
+    max-width: 70%;
+}

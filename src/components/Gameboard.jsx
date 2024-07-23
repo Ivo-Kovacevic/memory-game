@@ -1,15 +1,19 @@
-import { useState, useEffect } from 'react'
-import '../styles/header.css'
+import Card from './Card'
+import '../styles/gameboard.css'
 
-function Header({pokemons}) {
-
-    console.log(pokemons);
+function Gameboard( { pokemons, handleClick } ) {
 
     return (
-        <>
-            <h1>GASSS</h1>
-        </>
+        <div className='card-grid'>
+            {pokemons.map((pokemon) => (
+                <Card key = {pokemon.id}
+                    pokemon = {pokemon}
+                    handleClick= {handleClick}
+                />
+            ))}
+        </div>
     );
+
 }
 
-export default Header;
+export default Gameboard;

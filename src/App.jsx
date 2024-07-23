@@ -1,10 +1,19 @@
 import { useState, useEffect } from 'react'
-import Header from './components/Header'
+import Scoreboard from './components/Scoreboard'
 import Gameboard from './components/Gameboard'
 import './App.css'
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+
+
+  // Shuffle cards
+  function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5); 
+  }
+
 
   // Get pokemon data
   useEffect(() => {
@@ -21,8 +30,14 @@ function App() {
           )
         );
 
-        setPokemons(pokemonDetails);
-                
+        // Add clicked key to each pokemon
+        const pokemonsWithClickState = pokemonDetails.map(pokemon => ({
+          ...pokemon,
+          clicked: false
+        }));
+
+        setPokemons(shuffle(pokemonsWithClickState));
+
       } catch (error) {
         console.error('Error fetching the Pokemon data', error);
       }
@@ -33,10 +48,46 @@ function App() {
     
   }, []);
 
+
+  // Runs when card is clicked
+  function handleClick(clickedPokemon) {
+    
+    // Update pokemon value to clicked and increase score
+    if (clickedPokemon.clicked === false) {
+      const updatedPokemons = pokemons.map((pokemon) =>
+        pokemon.id === clickedPokemon.id ? { ...pokemon, clicked: true } : pokemon
+      );
+      
+      setPokemons(shuffle(updatedPokemons));
+      setScore(prevScore => prevScore + 1);
+
+    }
+    
+    // Reset all pokemon clicked values to false and set best score if its smaller than current score
+    else {
+      
+      if (score > bestScore) {
+        setBestScore(prevBestScore => prevBestScore = score);
+      }
+      setScore(0);
+      
+      const resetPokemons = pokemons.map((pokemon) => (
+        { ...pokemon,
+          clicked: false
+        }
+      ));
+
+      setPokemons(shuffle(resetPokemons));
+
+    }
+    
+  }
+
+
   return (
     <>
-      <Header />
-      <Gameboard pokemons={pokemons}/>
+      <Scoreboard score={score} bestScore={bestScore}/>
+      <Gameboard pokemons={pokemons} handleClick={handleClick}/>
     </>
   );
 }
