@@ -9,7 +9,7 @@ function App() {
   const [bestScore, setBestScore] = useState(0);
 
 
-  // Shuffle cards
+  // Shuffle cardsd
   function shuffle(array) {
     return array.sort(() => Math.random() - 0.5); 
   }
@@ -66,6 +66,8 @@ function App() {
     // Reset all pokemon clicked values to false and set best score if its smaller than current score
     else {
       
+      document.body.classList.add('flash-red');
+
       if (score > bestScore) {
         setBestScore(prevBestScore => prevBestScore = score);
       }
@@ -79,6 +81,10 @@ function App() {
 
       setPokemons(shuffle(resetPokemons));
 
+      setTimeout(() => {
+        document.body.classList.remove('flash-red');
+      }, 500);
+
     }
     
   }
@@ -87,7 +93,7 @@ function App() {
   return (
     <>
       <Scoreboard score={score} bestScore={bestScore}/>
-      <Gameboard pokemons={pokemons} handleClick={handleClick}/>
+      <Gameboard pokemons={pokemons} handleClick={handleClick} score={score}/>
     </>
   );
 }

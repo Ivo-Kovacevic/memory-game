@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import '../styles/scoreboard.css'
 
-function Scoreboard( {score, bestScore} ) {
+function Scoreboard( { score, bestScore } ) {
     return (
         <>
             <header>
 
                 <h1>Pokemon Memory Game</h1>
+
+                <h2>Level {score + 1}</h2>
 
                 <ul>
                     <li>

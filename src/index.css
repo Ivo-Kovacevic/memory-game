@@ -13,6 +13,32 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  margin: 0;
+  height: 100%;
+  background-image: url('../public/images/background.jpg');
+  background-size: cover;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+}
+
+/* Flash on fail */
+@keyframes flashRed {
+  from {
+    background-color: rgba(167, 3, 3, 0.521);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+.flash-red {
+  animation: flashRed 1s forwards;
+}
+
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -63,4 +89,18 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.mute {
+  background-color: transparent;
+  border: 1px solid #213547;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.mute:hover {
+  border: 1px solid #213547;
+  cursor: pointer;
+  background-color: antiquewhite;
 }

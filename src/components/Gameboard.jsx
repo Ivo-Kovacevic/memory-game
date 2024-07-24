@@ -1,11 +1,13 @@
 import Card from './Card'
 import '../styles/gameboard.css'
 
-function Gameboard( { pokemons, handleClick } ) {
+function Gameboard( { pokemons, handleClick, score } ) {
+
+    const selectedPokemons = pokemons.slice(0, score + 1);
 
     return (
         <div className='card-grid'>
-            {pokemons.map((pokemon) => (
+            {selectedPokemons.map((pokemon) => (
                 <Card key = {pokemon.id}
                     pokemon = {pokemon}
                     handleClick= {handleClick}
