@@ -18,3 +18,22 @@ img {
     max-height: 80%;
     max-width: 80%;
 }
+
+@media only screen and (max-width: 800px) {
+    h3 {
+        font-size: 1em;
+        margin: 10px;
+    }
+
+    .card {
+        height: 150px;
+        width: 150px;
+    }
+  }
+
+@media only screen and (max-width: 600px) {
+    .card {
+        height: 120px;
+        width: 120px;
+    }
+  }
